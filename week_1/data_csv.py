@@ -8,5 +8,12 @@ FILENAME = "data.csv" #the name of the csv file the script will be read from
 
 with open (FILENAME, "rt") as fp: #rt = read text
     reader = csv.reader(fp, delimiter=",") # creates a csv.reader object, which reads the contents of the file fp
+    linecount = 0
+    total = 0
     for line in reader: #  loop that iterates over each row in the CSV file.
-        print(line)
+        if not linecount: #header row
+            pass
+        else: #all other rows
+            total += int(line[1])
+        linecount += 1
+    print(f"average is {total/(linecount-1)}")
